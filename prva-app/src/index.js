@@ -42,6 +42,21 @@ function Greeting() {
 */
 
 
+function Greeting() {
+    return (
+        <div>
+            <Person />
+            <Message />
+        </div>
+    );
+}
+
+const Person = () => <h2>John doe</h2>;
+const Message = () => {
+    return <p>this is my message</p>;
+};
+
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
