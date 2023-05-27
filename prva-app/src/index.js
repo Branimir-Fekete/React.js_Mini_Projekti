@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from 'react-dom/client';
+import './style.css'
 
+//ovo što je zakomentirano je staro pa nisam htio mijenjati. Zanemari samo
 /*
 function Greeting(){
     return <h1>Ovo je naslov</h1>;
@@ -57,7 +59,34 @@ const Message = () => {
 };
 */
 
+//novo od sada pa na dalje...
+
+const BookList = () =>{
+    return <section className="booklist">
+        <Book />
+        <Book />
+        <Book />
+        <Book />
+    </section>
+};
+
+const Book = () =>{
+    return <article className="book">
+        <Image />
+        <Title />
+        <Author />
+    </article>
+};
+
+
+const Image = () => <img src="./images/book1.jpg" alt="Oh, the Places You'll Go!" />
+const Title = () => <h2>Oh, the Places You'll Go!</h2>
+const Author = () => {
+    return <h4>Dr. Seuss</h4>
+};
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
-root.render(<Greeting/>)
+
+//prije je pisalo Greating, ali sam promijenio
+root.render(<BookList/>)
