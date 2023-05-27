@@ -81,9 +81,14 @@ const Book = () =>{
 
 const Image = () => <img src="./images/book1.jpg" alt="Oh, the Places You'll Go!" />
 const Title = () => <h2>Oh, the Places You'll Go!</h2>
-const Author = () => {
-    return <h4>Dr. Seuss</h4>
-};
+const Author = () => {//inline css
+    const inlineHeadingStyles = {
+      color: '#617d98',
+      fontSize: '0.75rem',
+      marginTop: '0.5rem',
+    };
+    return <h4 style={inlineHeadingStyles}>Jordan Moore </h4>;
+  };
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
