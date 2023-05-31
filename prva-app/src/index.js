@@ -61,24 +61,36 @@ const Message = () => {
 
 //novo od sada pa na dalje...
 
-const author = 'Jordan Moore';
-const title = 'Oh, the Places You\'ll Go!';
-const img = './images/book1.jpg';
+const books = [
+    {
+        author: 'Jordan Moore',
+        title: 'Oh, the Places You\'ll Go!',
+        img: './images/book1.jpg',
+    },
+    {
+        author: 'James Clear',
+        title: 'Atomic Habits',
+        img: './images/book2.jpg',
+    },
+];
 
+const names = ['john', 'peter', 'ivan']
+const newNames = names.map((name) => {
+    return <h1>{name}</h1>;
+});
+console.log(newNames)
 const BookList = () =>{
-    return <section className="booklist">
-        <Book author={author} title={title} img={img} />
-        <Book author={author} title={title} img={img} />
-    </section>
+    return <section className="booklist">{newNames}</section>
 };
 
 const Book = (props) =>{
-    console.log(props);
+    const { img, title, author, children } = props;
     return (
     <article className="book">
-        <img src={props.img} alt={props.title} />
-        <h2>{props.title}</h2>
-        <h4>{props.author}</h4>
+        <img src={img} alt={title} />
+        <h2>{title}</h2>
+        <h4>{author}</h4>
+        {children}
     </article>
     );
 };
