@@ -61,19 +61,9 @@ const Message = () => {
 
 //novo od sada pa na dalje...
 
-const books = [
-    {
-        author: 'Jordan Moore',
-        title: 'Oh, the Places You\'ll Go!',
-        img: './images/book1.jpg',
-    },
-    {
-        author: 'James Clear',
-        title: 'Atomic Habits',
-        img: './images/book2.jpg',
-    },
-];
 
+//proba s map
+/*
 const names = ['john', 'peter', 'ivan']
 const newNames = names.map((name) => {
     return <h1>{name}</h1>;
@@ -82,9 +72,56 @@ console.log(newNames)
 const BookList = () =>{
     return <section className="booklist">{newNames}</section>
 };
+*/
+
+
+const books = [
+    {
+        author: 'Jordan Moore',
+        title: 'Oh, the Places You\'ll Go!',
+        img: './images/book1.jpg',
+        id: 1,
+    },
+    {
+        author: 'James Clear',
+        title: 'Atomic Habits',
+        img: './images/book2.jpg',
+        id: 2,
+    },
+];
+
+const BookList = () =>{
+    return (<section className="booklist">
+        <EventExamples />
+        {books.map((book)=>{
+        return <Book {...book} key={book.id} />;
+    })}
+    </section>
+    );
+};
+
+const EventExamples = () => {
+    const handleForImput = () => {
+        console.log('handle ffrom input');
+    };
+    const handleButtonClick = () => {
+        alert('handle from input');
+    };
+    return <section>
+        <form action="">
+            <h2>Typical Form</h2>
+            <input type="text" name="example" 
+            onChange={handleForImput} 
+            style={{margin: '1rem 0'}} 
+            />
+        </form>
+        <button onClick={handleButtonClick}>click me</button>
+    </section>
+};
 
 const Book = (props) =>{
     const { img, title, author, children } = props;
+   // console.log(props);
     return (
     <article className="book">
         <img src={img} alt={title} />
