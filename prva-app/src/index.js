@@ -61,34 +61,29 @@ const Message = () => {
 
 //novo od sada pa na dalje...
 
+const author = 'Jordan Moore';
+const title = 'Oh, the Places You\'ll Go!';
+const img = './images/book1.jpg';
+
 const BookList = () =>{
     return <section className="booklist">
-        <Book />
-        <Book />
-        <Book />
-        <Book />
+        <Book author={author} title={title} img={img} />
+        <Book author={author} title={title} img={img} />
     </section>
 };
 
-const Book = () =>{
-    return <article className="book">
-        <Image />
-        <Title />
-        <Author />
+const Book = (props) =>{
+    console.log(props);
+    return (
+    <article className="book">
+        <img src={props.img} alt={props.title} />
+        <h2>{props.title}</h2>
+        <h4>{props.author}</h4>
     </article>
+    );
 };
 
 
-const Image = () => <img src="./images/book1.jpg" alt="Oh, the Places You'll Go!" />
-const Title = () => <h2>Oh, the Places You'll Go!</h2>
-const Author = () => {//inline css
-    const inlineHeadingStyles = {
-      color: '#617d98',
-      fontSize: '0.75rem',
-      marginTop: '0.5rem',
-    };
-    return <h4 style={inlineHeadingStyles}>Jordan Moore </h4>;
-  };
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
