@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from 'react-dom/client';
 import './style.css'
+import { books } from "./books";
+import Book from './Book'
 
 //ovo što je zakomentirano je staro pa nisam htio mijenjati. Zanemari samo
 /*
@@ -75,20 +77,7 @@ const BookList = () =>{
 */
 
 
-const books = [
-    {
-        author: 'Jordan Moore',
-        title: 'Oh, the Places You\'ll Go!',
-        img: './images/book1.jpg',
-        id: 1,
-    },
-    {
-        author: 'James Clear',
-        title: 'Atomic Habits',
-        img: './images/book2.jpg',
-        id: 2,
-    },
-];
+
 /*
 const BookList = () =>{
     return (<section className="booklist">
@@ -153,23 +142,7 @@ const BookList = () => {
     );
   };
   
-  const Book = (props) => {
-    const { img, title, author, getBook, id } = props;
-    // console.log(props);
-    const getSingleBook = () => {
-        getBook(id);
-    };
   
-    return (
-      <article className='book'>
-        <img src={img} alt={title} />
-        <h2>{title}</h2>
-        {/* this is not going to work */}
-        <button onClick={getSingleBook}>display title</button>
-        <h4>{author}</h4>
-      </article>
-    );
-  };
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
