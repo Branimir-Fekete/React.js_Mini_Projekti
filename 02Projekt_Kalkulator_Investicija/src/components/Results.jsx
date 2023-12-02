@@ -1,51 +1,51 @@
-import { calculateInvestmentResults, formatter } from '../util/investment';
-
+import { calculateInvestmentResults, formatter } from '../util/investment.js';
 export default function Results({ input }) {
-  // Izračunavanje podataka o investiciji pomoću funkcije calculateInvestmentResults
-  const resultsData = calculateInvestmentResults(input);
+  // Niz za pohranu izračunatih rezultata investicije
+  const results = [];
 
-  // Izračunavanje početne investicije
+  // Izračunaj rezultate investicije na temelju unesenih podataka
+  calculateInvestmentResults(input, results);
+
+  // Provjeri postoje li rezultati koje treba prikazati
+  if (results.length === 0) {
+    return <p className='center'>Pogrešni uneseni podaci.</p>;
+  }
+
+  // Izračunaj početnu investiciju za daljnje korištenje
   const initialInvestment =
-    resultsData[0].valueEndOfYear -
-    resultsData[0].interest -
-    resultsData[0].annualInvestment;
+    results[0].valueEndOfYear -
+    results[0].interest -
+    results[0].annualInvestment;
 
-  // Prikaz tablice s rezultatima
+  // Prikaz rezultata investicije u obliku tablice
   return (
     <table id='result'>
-      {/* Zaglavlje tablice */}
       <thead>
         <tr>
           <th>Godina</th>
-          <th>Vrijednost investicije</th>
+          <th>Vrijednost Investicije</th>
           <th>Kamata (Godišnje)</th>
           <th>Ukupna Kamata</th>
           <th>Uloženi Kapital</th>
         </tr>
       </thead>
-      {/* Tijelo tablice */}
       <tbody>
-        {resultsData.map((yearData) => {
-          // Izračunavanje ukupne kamate i uloženog kapitala za svaku godinu
-          const totalIntrest =
+        {results.map((yearData) => {
+          // Izračunaj ukupnu kamatu i ukupni uloženi iznos za svaku godinu
+          const totalInterest =
             yearData.valueEndOfYear -
             yearData.annualInvestment * yearData.year -
             initialInvestment;
+          const totalAmountInvested = yearData.valueEndOfYear - totalInterest;
 
-          const totalAmountInvested = yearData.valueEndOfYear - totalIntrest;
-
-          // Prikaz reda tablice za svaku godinu
+          // Prikaz retka s podacima o investiciji za svaku godinu
           return (
             <tr key={yearData.year}>
-              <td>{yearData.year}</td> {/* Stupac za godinu */}
-              <td>{formatter.format(yearData.valueEndOfYear)}</td>{' '}
-              {/* Stupac za vrijednost investicije */}
-              <td>{formatter.format(yearData.interest)}</td>{' '}
-              {/* Stupac za kamatu (godisnje) */}
-              <td>{formatter.format(totalIntrest)}</td>{' '}
-              {/* Stupac za ukupnu kamatu */}
-              <td>{formatter.format(totalAmountInvested)}</td>{' '}
-              {/* Stupac za uloženi kapital */}
+              <td>{yearData.year}</td>
+              <td>{formatter.format(yearData.valueEndOfYear)}</td>
+              <td>{formatter.format(yearData.interest)}</td>
+              <td>{formatter.format(totalInterest)}</td>
+              <td>{formatter.format(totalAmountInvested)}</td>
             </tr>
           );
         })}

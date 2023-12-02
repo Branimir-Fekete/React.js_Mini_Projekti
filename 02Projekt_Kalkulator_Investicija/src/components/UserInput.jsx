@@ -1,11 +1,10 @@
-// Funkcionalna komponenta za unos korisničkih podataka
 export default function UserInput({ onChange, userInput }) {
   return (
     <section id='user-input'>
-      {/* Grupa unosa podataka */}
+      {/* Grupa za unos početne i godišnje investicije */}
       <div className='input-group'>
         <p>
-          <label>Početna investicija</label>{' '}
+          <label>Početna Investicija</label>
           <input
             type='number'
             required
@@ -16,7 +15,7 @@ export default function UserInput({ onChange, userInput }) {
           />
         </p>
         <p>
-          <label>Godišnja investicija</label>{' '}
+          <label>Godišnja Investicija</label>
           <input
             type='number'
             required
@@ -28,10 +27,10 @@ export default function UserInput({ onChange, userInput }) {
         </p>
       </div>
 
-      {/* Druga grupa unosa podataka */}
+      {/* Grupa za unos očekivanog prinosa i trajanja investicije */}
       <div className='input-group'>
         <p>
-          <label>Očekivani povrat</label>{' '}
+          <label>Očekivani Prinos</label>
           <input
             type='number'
             required
