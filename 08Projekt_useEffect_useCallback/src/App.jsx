@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
-
 import Places from './components/Places.jsx';
 import { AVAILABLE_PLACES } from './data.js';
 import Modal from './components/Modal.jsx';
@@ -7,17 +6,19 @@ import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
 import { sortPlacesByDistance } from './loc.js';
 
+// Učitavanje spremljenih ID-ova mjesta iz lokalne pohrane
 const storedIds = JSON.parse(localStorage.getItem('selectedPlaces')) || [];
 const storedPlaces = storedIds.map((id) =>
   AVAILABLE_PLACES.find((place) => place.id === id)
 );
 
 function App() {
-  const selectedPlace = useRef();
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [availablePlaces, setAvailablePlaces] = useState([]);
-  const [pickedPlaces, setPickedPlaces] = useState(storedPlaces);
+  const selectedPlace = useRef(); // Ref za praćenje odabranog mjesta
+  const [modalIsOpen, setModalIsOpen] = useState(false); // Stanje za modalni prozor
+  const [availablePlaces, setAvailablePlaces] = useState([]); // Dostupna mjesta
+  const [pickedPlaces, setPickedPlaces] = useState(storedPlaces); // Odabrana mjesta
 
+  // Učitavanje i sortiranje mjesta prema udaljenosti
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       const sortedPlaces = sortPlacesByDistance(
@@ -30,15 +31,18 @@ function App() {
     });
   }, []);
 
+  // Funkcija za započinjanje uklanjanja mjesta
   function handleStartRemovePlace(id) {
     setModalIsOpen(true);
     selectedPlace.current = id;
   }
 
+  // Funkcija za zaustavljanje uklanjanja mjesta
   function handleStopRemovePlace() {
     setModalIsOpen(false);
   }
 
+  // Funkcija za odabir mjesta
   function handleSelectPlace(id) {
     setPickedPlaces((prevPickedPlaces) => {
       if (prevPickedPlaces.some((place) => place.id === id)) {
@@ -57,6 +61,7 @@ function App() {
     }
   }
 
+  // Funkcija za uklanjanje mjesta korištenjem useCallback-a
   const handleRemovePlace = useCallback(function handleRemovePlace() {
     setPickedPlaces((prevPickedPlaces) =>
       prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
@@ -70,8 +75,10 @@ function App() {
     );
   }, []);
 
+  // JSX povratna vrijednost komponente
   return (
     <>
+      // Modalni prozor za potvrdu brisanja
       <Modal open={modalIsOpen}>
         {modalIsOpen && (
           <DeleteConfirmation
@@ -80,7 +87,6 @@ function App() {
           />
         )}
       </Modal>
-
       <header>
         <img
           src={logoImg}
