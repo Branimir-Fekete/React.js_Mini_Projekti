@@ -3,6 +3,7 @@ import Button from './Button.jsx';
 
 export default function NoProjectSelected({ onStartAddProject }) {
   return (
+    // Kontejner za prikaz kada nema odabranog projekta
     <div className='mt-24 text-center w-2/3 '>
       <img
         src={noProjectImage}

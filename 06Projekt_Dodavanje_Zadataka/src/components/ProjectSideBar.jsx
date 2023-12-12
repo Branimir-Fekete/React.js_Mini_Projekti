@@ -24,7 +24,7 @@ export default function ProjectSideBar({
           } else {
             cssClasses += ' text-stone-400';
           }
-
+          // Prikaz pojedinog projekta
           return (
             <li key={project.id}>
               <button

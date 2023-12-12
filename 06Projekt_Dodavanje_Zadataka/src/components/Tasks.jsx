@@ -1,15 +1,20 @@
 import NewTask from './NewTask';
 
+// Izvoz funkcionalne komponente Tasks
 export default function Tasks({ tasks, onAdd, onDelete }) {
   return (
+    // Prikazuje sekciju za zadatke
     <section>
       <h2 className='text-2xl font-bold text-stone-700 mb-4'>Tasks</h2>
+      {/* Komponenta za dodavanje novog zadatka */}
       <NewTask onAdd={onAdd} />
+
       {tasks.length === 0 && (
         <p className='text-stone-800 mb-4'>
           This project does not have any tasks yet.
         </p>
       )}
+      {/* Uvjetni prikaz liste zadataka ako postoje */}
       {tasks.length > 0 && (
         <ul className='p-4 mt-8 rounded-md bg-stone-100'>
           {tasks.map((task) => (
@@ -17,7 +22,7 @@ export default function Tasks({ tasks, onAdd, onDelete }) {
               key={task.id}
               className='flex justify-between my-4'
             >
-              <span>{task.text}</span>
+              <span>{task.text}</span> // Prikaz teksta zadatka
               <button
                 className='text-stone-700 hover:text-red-500'
                 onClick={() => onDelete(task.id)}
